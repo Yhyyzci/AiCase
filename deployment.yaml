@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codegen-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codegen
+  template:
+    metadata:
+      labels:
+        app: codegen
+    spec:
+      containers:
+      - name: codegen
+        image: dockerhubkullaniciadi/ai-code-generator:latest
+        ports:
+        - containerPort: 5000
