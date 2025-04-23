@@ -4,7 +4,10 @@ import re
 
 app = Flask(__name__)
 
-# Bu fonksiyonu buraya yaz!
+# OpenAI API anahtarını buraya yaz
+openai.api_key = "sk-..."  # kendi key’in ile değiştir
+
+# AI'dan gelen yanıtı işleyen fonksiyon
 def parse_response(reply):
     code_match = re.search(r"```python(.*?)```", reply, re.DOTALL)
     title_match = re.search(r"Başlık:\s*(.*)", reply)
@@ -13,16 +16,14 @@ def parse_response(reply):
         "title": title_match.group(1).strip() if title_match else ""
     }
 
-# OpenAI API ayarı (kendi API key’in ile değiştir)
-openai.api_key = "YOUR_API_KEY"
-
+# Ana sayfa
 @app.route("/", methods=["GET", "POST"])
 def index():
     result = None
     if request.method == "POST":
         prompt = request.form["prompt"]
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # veya destekliyorsa "gpt-4"
+            model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "Sen bir Python kod üretici asistansın. İsteme göre çalışır kod ve başlık üret."},
                 {"role": "user", "content": prompt}
@@ -43,5 +44,6 @@ def index():
         {% endif %}
     """, result=result)
 
+# Uygulamayı başlat (Docker çalışması için host ekledik)
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=5001)

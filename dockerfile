@@ -1,7 +1,16 @@
 FROM python:3.10
 
+# Uygulama dizinine geç
 WORKDIR /app
+
+# Dosyaları kopyala
 COPY . .
-RUN pip install flask openai
+
+# Gereken paketleri yükle
+RUN pip install --no-cache-dir flask openai
+
+# Uygulama portunu aç
 EXPOSE 5000
-CMD ["python", "app.py"]
+
+# Uygulamayı başlat
+CMD ["python3", "app.py"]
