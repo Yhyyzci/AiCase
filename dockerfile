@@ -7,10 +7,10 @@ WORKDIR /app
 COPY . .
 
 # Gereken paketleri yükle
-RUN pip install --no-cache-dir flask openai
+RUN pip install --no-cache-dir flask openai==0.28
 
 # Uygulama portunu aç
-EXPOSE 5000
+EXPOSE 5001
 
 # Uygulamayı başlat
 CMD ["python3", "app.py"]

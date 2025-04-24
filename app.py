@@ -5,7 +5,7 @@ import re
 app = Flask(__name__)
 
 # OpenAI API anahtarını buraya yaz
-openai.api_key = "sk-..."  # kendi key’in ile değiştir
+openai.api_key = "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"  # kendi key’in ile değiştir
 
 # AI'dan gelen yanıtı işleyen fonksiyon
 def parse_response(reply):
