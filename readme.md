@@ -57,13 +57,16 @@ http://localhost:5001
 🐳 Docker ile Çalıştırma
 
 1.Docker imajını oluşturun:
+
 docker build -t ai-code-generator .
 
 2.Konteyneri çalıştırın (API anahtarınızı burada verin):
+
 docker run -p 5001:5001 -e OPENAI_API_KEY=your-api-key-here ai-code-generator
 
 
 🌐 Kullanım
+
 Web arayüzüne gidin (http://localhost:5000)
 
 Girdi kutusuna bir istem yazın (örnek: "iki sayıyı toplayan bir Python fonksiyonu yaz").
