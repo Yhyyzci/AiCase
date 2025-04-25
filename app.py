@@ -5,12 +5,12 @@ import re
 app = Flask(__name__)
 
 # OpenAI API anahtarını buraya yaz
-openai.api_key = "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"  # kendi key’in ile değiştir
+openai.api_key = "Kendi Key'in buraya yaz" 
 
 # AI'dan gelen yanıtı işleyen fonksiyon
 def parse_response(reply):
     code_match = re.search(r"```python(.*?)```", reply, re.DOTALL)
-    title_match = re.search(r"Başlık:\s*(.*)", reply)
+    title_match = re.search(r"Baslik:\s*(.*)", reply)
     return {
         "code": code_match.group(1).strip() if code_match else "",
         "title": title_match.group(1).strip() if title_match else ""
@@ -25,7 +25,7 @@ def index():
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "Sen bir Python kod üretici asistansın. İsteme göre çalışır kod ve başlık üret."},
+                {"role": "system", "content": "Sen bir Python kod üretici asistansin"},
                 {"role": "user", "content": prompt}
             ]
         )
